@@ -1,15 +1,25 @@
 import Foundation
 
-protocol JellyfinClientProtocol {
-    
+public protocol JellyfinClientProtocol: Sendable {
+    func getServerInfo(url: URL) async throws -> ServerInfoResponse
+    func authenticateByName(baseURL: URL, token: String, request: UsersAuthenticateByNameRequest) async throws -> UsersAuthenticateByNameResponse
 }
 
 public struct ServerInfoResponse: Sendable, Decodable {
+    public let id: String
     public let serverName: String
     public let version: String
+    public let startupWizardCompleted: Bool
+    
+    public init(id: String, serverName: String, version: String, startupWizardCompleted: Bool) {
+        self.id = id
+        self.serverName = serverName
+        self.version = version
+        self.startupWizardCompleted = startupWizardCompleted
+    }
 }
 
-public struct UsersAuthenticateByNameRequest: Encodable {
+public struct UsersAuthenticateByNameRequest: Sendable, Encodable {
     let username: String
     let pw: String
     
@@ -21,10 +31,18 @@ public struct UsersAuthenticateByNameRequest: Encodable {
 
 public struct UsersAuthenticateByNameResponse: Sendable, Decodable {
     public let user: UsersAuthenticateByNameResponse_User
+    
+    public init(user: UsersAuthenticateByNameResponse_User) {
+        self.user = user
+    }
 }
 
 public struct UsersAuthenticateByNameResponse_User: Sendable, Decodable {
     public let id: String
+    
+    public init(id: String) {
+        self.id = id
+    }
 }
 
 public enum APIError: Error, LocalizedError {
@@ -41,13 +59,13 @@ public enum APIError: Error, LocalizedError {
     }
 }
 
-public actor JellyfinClient {
+public actor JellyfinClient: JellyfinClientProtocol {
     public static let shared = JellyfinClient()
     
     private let session: URLSession
     private let decoder: JSONDecoder
     
-    private init() {
+    public init() {
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = ["Accept": "application/json"]
         self.session = URLSession(configuration: config)
