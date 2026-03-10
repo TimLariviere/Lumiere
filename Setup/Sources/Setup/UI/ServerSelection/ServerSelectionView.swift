@@ -2,12 +2,12 @@ import SwiftUI
 import Core
 import DesignSystem
 
-public struct ServerSelectionView: View {
+struct ServerSelectionView: View {
     private let didConnect: () -> Void
     
     @State private var viewModel: ServerSelectionViewModel
     
-    public init(deps: AuthDependencies, didConnect: @MainActor @escaping () -> Void) {
+    init(deps: SetupDependencies, didConnect: @MainActor @escaping () -> Void) {
         self.didConnect = didConnect
         _viewModel = State(initialValue: ServerSelectionViewModel(deps: deps))
     }
@@ -31,8 +31,4 @@ public struct ServerSelectionView: View {
             didConnect()
         }
     }
-}
-
-#Preview {
-    ServerSelectionView(deps: MockAuthDependencies.shared, didConnect: {})
 }

@@ -9,16 +9,19 @@
 /* Begin PBXBuildFile section */
 		2758DD282F5D62BF003ACF3B /* AGENTS.md in Sources */ = {isa = PBXBuildFile; fileRef = 2758DD272F5D62BA003ACF3B /* AGENTS.md */; };
 		2758DD312F5D733A003ACF3B /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 2758DD302F5D733A003ACF3B /* Core */; };
-		2758DD352F5DA86D003ACF3B /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 2758DD342F5DA86D003ACF3B /* Auth */; };
+		2758DD352F5DA86D003ACF3B /* Setup in Frameworks */ = {isa = PBXBuildFile; productRef = 2758DD342F5DA86D003ACF3B /* Setup */; };
 		2758DD392F5DACB6003ACF3B /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2758DD382F5DACB6003ACF3B /* DesignSystem */; };
+		27897FB82F608507003A677B /* Library in Frameworks */ = {isa = PBXBuildFile; productRef = 27897FB72F608507003A677B /* Library */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2758DD272F5D62BA003ACF3B /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
 		2758DD2E2F5D6482003ACF3B /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
-		2758DD322F5D9625003ACF3B /* Auth */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Auth; sourceTree = "<group>"; };
+		2758DD322F5D9625003ACF3B /* Setup */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Setup; sourceTree = "<group>"; };
 		2758DD362F5DA937003ACF3B /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DesignSystem; sourceTree = "<group>"; };
 		2764D69A2F5C77460070F5CE /* Lumiere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumiere.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27897FB22F6082DB003A677B /* Library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Library; sourceTree = "<group>"; };
+		27897FB92F60B313003A677B /* JellyfinSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = JellyfinSDK; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,8 +37,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27897FB82F608507003A677B /* Library in Frameworks */,
 				2758DD392F5DACB6003ACF3B /* DesignSystem in Frameworks */,
-				2758DD352F5DA86D003ACF3B /* Auth in Frameworks */,
+				2758DD352F5DA86D003ACF3B /* Setup in Frameworks */,
 				2758DD312F5D733A003ACF3B /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,10 +50,12 @@
 		2764D6912F5C77460070F5CE = {
 			isa = PBXGroup;
 			children = (
-				2758DD362F5DA937003ACF3B /* DesignSystem */,
-				2758DD322F5D9625003ACF3B /* Auth */,
+				27897FB92F60B313003A677B /* JellyfinSDK */,
 				2764D69C2F5C77460070F5CE /* App */,
+				2758DD362F5DA937003ACF3B /* DesignSystem */,
 				2758DD2E2F5D6482003ACF3B /* Core */,
+				2758DD322F5D9625003ACF3B /* Setup */,
+				27897FB22F6082DB003A677B /* Library */,
 				2758DD272F5D62BA003ACF3B /* AGENTS.md */,
 				2764D69B2F5C77460070F5CE /* Products */,
 			);
@@ -84,8 +90,9 @@
 			name = Lumiere;
 			packageProductDependencies = (
 				2758DD302F5D733A003ACF3B /* Core */,
-				2758DD342F5DA86D003ACF3B /* Auth */,
+				2758DD342F5DA86D003ACF3B /* Setup */,
 				2758DD382F5DACB6003ACF3B /* DesignSystem */,
+				27897FB72F608507003A677B /* Library */,
 			);
 			productName = Lumiere;
 			productReference = 2764D69A2F5C77460070F5CE /* Lumiere.app */;
@@ -117,8 +124,9 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2758DD2F2F5D733A003ACF3B /* XCLocalSwiftPackageReference "Core" */,
-				2758DD332F5DA86D003ACF3B /* XCLocalSwiftPackageReference "Auth" */,
+				2758DD332F5DA86D003ACF3B /* XCLocalSwiftPackageReference "Setup" */,
 				2758DD372F5DACB6003ACF3B /* XCLocalSwiftPackageReference "DesignSystem" */,
+				27897FB62F608507003A677B /* XCLocalSwiftPackageReference "Library" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2764D69B2F5C77460070F5CE /* Products */;
@@ -359,13 +367,17 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Core;
 		};
-		2758DD332F5DA86D003ACF3B /* XCLocalSwiftPackageReference "Auth" */ = {
+		2758DD332F5DA86D003ACF3B /* XCLocalSwiftPackageReference "Setup" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = Auth;
+			relativePath = Setup;
 		};
 		2758DD372F5DACB6003ACF3B /* XCLocalSwiftPackageReference "DesignSystem" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = DesignSystem;
+		};
+		27897FB62F608507003A677B /* XCLocalSwiftPackageReference "Library" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Library;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -374,13 +386,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
 		};
-		2758DD342F5DA86D003ACF3B /* Auth */ = {
+		2758DD342F5DA86D003ACF3B /* Setup */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Auth;
+			productName = Setup;
 		};
 		2758DD382F5DACB6003ACF3B /* DesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DesignSystem;
+		};
+		27897FB72F608507003A677B /* Library */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Library;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

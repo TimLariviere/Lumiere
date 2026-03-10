@@ -1,42 +1,55 @@
 import SwiftUI
-import Auth
-import Core
+import Setup
+import Library
+import JellyfinSDK
 
 @main
 struct LumiereApp: App {
     let deps = Dependencies()
-    let settings = Settings()
     
     var body: some Scene {
         WindowGroup {
-            AuthCoordinator(deps: deps)
+            AppCoordinator(deps: deps)
         }
     }
 }
 
-public final class Dependencies: AuthDependencies {
-    private let _jellyfinClient: JellyfinClientProtocol
-    private let _settings: AuthSettings
+public final class Dependencies: SetupDependencies, LibraryDependencies {
+    private let _settings: Settings
+    private let _jellyfinApiClient: JellyfinApiClient
     
     init() {
-        self._jellyfinClient = JellyfinClient()
         self._settings = Settings()
+        self._jellyfinApiClient = DefaultJellyfinApiClient(settings: self._settings)
     }
     
-    public var jellyfinClient: JellyfinClientProtocol { self._jellyfinClient }
-    public var settings: AuthSettings { self._settings }
+    public var jellyfinApiClientSettings: JellyfinApiClientSettings { _settings }
+    public var jellyfinApiClient: JellyfinApiClient { _jellyfinApiClient }
 }
 
-public final class Settings: AuthSettings {
-    private static let jellyfinServerAddressKey = "jellyfinServerAddress"
-    public var jellyfinServerAddress: String? {
-        get { UserDefaults.standard.string(forKey: Settings.jellyfinServerAddressKey) }
-        set { UserDefaults.standard.set(newValue, forKey: Settings.jellyfinServerAddressKey) }
+public final class Settings: JellyfinApiClientSettings {
+    private static let serverIdKey = "JellyfinApiClientSettings_ServerId"
+    public var serverId: String { UserDefaults.standard.string(forKey: Settings.serverIdKey) ?? "" }
+    
+    private static let serverNameKey = "JellyfinApiClientSettings_ServerName"
+    public var serverName: String { UserDefaults.standard.string(forKey: Settings.serverNameKey) ?? "" }
+    
+    private static let serverAddressKey = "JellyfinApiClientSettings_ServerAddress"
+    public var serverAddress: URL { UserDefaults.standard.url(forKey: Settings.serverAddressKey) ?? URL(string: "/")! }
+    
+    private static let accessTokenKey = "JellyfinApiClientSettings_AccessToken"
+    public var accessToken: String { UserDefaults.standard.string(forKey: Settings.accessTokenKey) ?? "" }
+    
+    public func setServerAddress(url: URL) {
+        UserDefaults.standard.set(url, forKey: Settings.serverAddressKey)
     }
     
-    private static let jellyfinServerNameKey = "jellyfinServerName"
-    public var jellyfinServerName: String? {
-        get { UserDefaults.standard.string(forKey: Settings.jellyfinServerNameKey) }
-        set { UserDefaults.standard.set(newValue, forKey: Settings.jellyfinServerNameKey) }
+    public func setServer(id: String, name: String) {
+        UserDefaults.standard.set(id, forKey: Settings.serverIdKey)
+        UserDefaults.standard.set(name, forKey: Settings.serverNameKey)
+    }
+    
+    public func setAccessToken(accessToken: String) {
+        UserDefaults.standard.set(accessToken, forKey: Settings.accessTokenKey)
     }
 }

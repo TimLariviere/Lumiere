@@ -4,27 +4,29 @@
 import PackageDescription
 
 let package = Package(
-    name: "Core",
+    name: "Library",
     platforms: [
         .tvOS(.v26)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Core",
-            targets: ["Core"]
+            name: "Library",
+            targets: ["Library"]
         ),
     ],
     dependencies: [
-        .package(path: "../JellyfinSDK")
+        .package(path: "../DesignSystem"),
+        .package(path: "../Core")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Core",
+            name: "Library",
             dependencies: [
-                .product(name: "JellyfinSDK", package: "JellyfinSDK")
+                .product(name: "DesignSystem", package: "DesignSystem"),
+                .product(name: "Core", package: "Core")
             ]
         ),
 
