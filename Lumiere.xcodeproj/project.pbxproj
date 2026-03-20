@@ -12,9 +12,11 @@
 		2758DD352F5DA86D003ACF3B /* Setup in Frameworks */ = {isa = PBXBuildFile; productRef = 2758DD342F5DA86D003ACF3B /* Setup */; };
 		2758DD392F5DACB6003ACF3B /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2758DD382F5DACB6003ACF3B /* DesignSystem */; };
 		27897FB82F608507003A677B /* Library in Frameworks */ = {isa = PBXBuildFile; productRef = 27897FB72F608507003A677B /* Library */; };
+		27FF821C2F644C4C0061F274 /* Player in Frameworks */ = {isa = PBXBuildFile; productRef = 27FF821B2F644C4C0061F274 /* Player */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27224D672F6448E30082FE92 /* Player */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Player; sourceTree = "<group>"; };
 		2758DD272F5D62BA003ACF3B /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
 		2758DD2E2F5D6482003ACF3B /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		2758DD322F5D9625003ACF3B /* Setup */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Setup; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FF821C2F644C4C0061F274 /* Player in Frameworks */,
 				27897FB82F608507003A677B /* Library in Frameworks */,
 				2758DD392F5DACB6003ACF3B /* DesignSystem in Frameworks */,
 				2758DD352F5DA86D003ACF3B /* Setup in Frameworks */,
@@ -56,6 +59,7 @@
 				2758DD2E2F5D6482003ACF3B /* Core */,
 				2758DD322F5D9625003ACF3B /* Setup */,
 				27897FB22F6082DB003A677B /* Library */,
+				27224D672F6448E30082FE92 /* Player */,
 				2758DD272F5D62BA003ACF3B /* AGENTS.md */,
 				2764D69B2F5C77460070F5CE /* Products */,
 			);
@@ -93,6 +97,7 @@
 				2758DD342F5DA86D003ACF3B /* Setup */,
 				2758DD382F5DACB6003ACF3B /* DesignSystem */,
 				27897FB72F608507003A677B /* Library */,
+				27FF821B2F644C4C0061F274 /* Player */,
 			);
 			productName = Lumiere;
 			productReference = 2764D69A2F5C77460070F5CE /* Lumiere.app */;
@@ -127,6 +132,7 @@
 				2758DD332F5DA86D003ACF3B /* XCLocalSwiftPackageReference "Setup" */,
 				2758DD372F5DACB6003ACF3B /* XCLocalSwiftPackageReference "DesignSystem" */,
 				27897FB62F608507003A677B /* XCLocalSwiftPackageReference "Library" */,
+				27FF821A2F644C4C0061F274 /* XCLocalSwiftPackageReference "Player" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2764D69B2F5C77460070F5CE /* Products */;
@@ -379,6 +385,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Library;
 		};
+		27FF821A2F644C4C0061F274 /* XCLocalSwiftPackageReference "Player" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Player;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -397,6 +407,10 @@
 		27897FB72F608507003A677B /* Library */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Library;
+		};
+		27FF821B2F644C4C0061F274 /* Player */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Player;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

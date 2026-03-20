@@ -1,9 +1,12 @@
 import SwiftUI
 import Setup
 import Library
+import Player
 
 struct AppCoordinator: View {
+    @AppStorage("userId") private var userId: String = ""
     @AppStorage("isLoggedIn") private var isLoggedIn = false
+    @State private var selectedItemId: String? = nil
     
     private let deps: Dependencies
     
@@ -13,18 +16,30 @@ struct AppCoordinator: View {
     
     var body: some View {
         Group {
-            if (isLoggedIn) {
-                LibraryCoordinator(
-                    deps: deps,
-                    didLogOut: {
-                        isLoggedIn = false
-                    }
-                )
+            if (self.isLoggedIn) {
+                if let selectedItemId = self.selectedItemId {
+                    PlayerCoordinator(
+                        deps: deps,
+                        userId: self.userId,
+                        itemId: selectedItemId
+                    )
+                } else {
+                    LibraryCoordinator(
+                        deps: deps,
+                        didLogOut: {
+                            self.isLoggedIn = false
+                        },
+                        didSelectMovie: { movieId in
+                            self.selectedItemId = movieId
+                        }
+                    )
+                }
             } else {
                 SetupCoordinator(
                     deps: deps,
-                    didLogin: {
-                        isLoggedIn = true
+                    didLogin: { userId in
+                        self.userId = userId
+                        self.isLoggedIn = true
                     }
                 )
             }

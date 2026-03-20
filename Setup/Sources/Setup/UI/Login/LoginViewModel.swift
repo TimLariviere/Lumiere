@@ -10,7 +10,7 @@ class LoginViewModel {
     var username: String = ""
     var password: String = ""
     
-    let didLogin = PassthroughSubject<Void, Never>()
+    let didLogin = PassthroughSubject<String, Never>()
     
     private let jellyfinApiClientSettings: JellyfinApiClientSettings
     private let jellyfinApiClient: JellyfinApiClient
@@ -29,7 +29,7 @@ class LoginViewModel {
             let request = UsersAuthenticateByNameRequest(username: username, pw: password)
             let response = try await jellyfinApiClient.users.authenticateByName(request: request)
             jellyfinApiClientSettings.setAccessToken(accessToken: response.accessToken)
-            didLogin.send()
+            didLogin.send(response.user.id)
         } catch {
             print(error.localizedDescription)
         }
@@ -59,7 +59,7 @@ class LoginViewModel {
                         let authenticateRequest = UsersAuthenticateWithQuickConnectRequest(secret: connectResponse.secret)
                         let authenticateResponse = try await jellyfinApiClient.users.authenticateWithQuickConnect(request: authenticateRequest)
                         jellyfinApiClientSettings.setAccessToken(accessToken: authenticateResponse.accessToken)
-                        didLogin.send()
+                        didLogin.send(authenticateResponse.user.id)
                         return
                     }
                     try await Task.sleep(for: .seconds(1))

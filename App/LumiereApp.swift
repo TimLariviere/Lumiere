@@ -1,6 +1,7 @@
 import SwiftUI
 import Setup
 import Library
+import Player
 import JellyfinSDK
 
 @main
@@ -14,7 +15,7 @@ struct LumiereApp: App {
     }
 }
 
-public final class Dependencies: SetupDependencies, LibraryDependencies {
+public final class Dependencies: SetupDependencies, LibraryDependencies, PlayerDependencies {
     private let _settings: Settings
     private let _jellyfinApiClient: JellyfinApiClient
     

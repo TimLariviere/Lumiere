@@ -9,9 +9,9 @@ public struct SetupCoordinator: View {
     @State private var router = Router<SetupDestination>()
     
     let deps: SetupDependencies
-    let didLogin: () -> Void
+    let didLogin: (String) -> Void
     
-    public init(deps: SetupDependencies, didLogin: @MainActor @escaping () -> Void) {
+    public init(deps: SetupDependencies, didLogin: @MainActor @escaping (String) -> Void) {
         self.deps = deps
         self.didLogin = didLogin
     }
@@ -27,8 +27,8 @@ public struct SetupCoordinator: View {
                 .navigationDestination(for: SetupDestination.self) { destination in
                     switch destination {
                         case .login:
-                            LoginView(deps: deps) {
-                                didLogin()
+                            LoginView(deps: deps) { userId in
+                                didLogin(userId)
                             }
                     }
                 }

@@ -3,9 +3,9 @@ import SwiftUI
 struct LoginView: View {
     @State private var viewModel: LoginViewModel
     
-    let didLogin: () -> Void
+    let didLogin: (String) -> Void
     
-    init(deps: SetupDependencies, didLogin: @MainActor @escaping () -> Void) {
+    init(deps: SetupDependencies, didLogin: @MainActor @escaping (String) -> Void) {
         self._viewModel = State(initialValue: LoginViewModel(deps: deps))
         self.didLogin = didLogin
     }
@@ -32,8 +32,8 @@ struct LoginView: View {
                 }
             }
         }
-        .onReceive(viewModel.didLogin) {
-            didLogin()
+        .onReceive(viewModel.didLogin) { userId in
+            didLogin(userId)
         }
         .onDisappear {
             viewModel.cancelPolling()
